@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+  exp:
+    image: node:6.11.2
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+      - 9229:9229
+    volumes:
+      - .:/usr/src/app
+    command: nodemon -L --inspect server.js
+  db:
+    image: mongo:3.5.12
+    restart: always
+    ports:
+     - "27017:27017"
